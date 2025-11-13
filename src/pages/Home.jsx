@@ -6,12 +6,22 @@ import FeaturedMachines from '../components/FeaturedMachines.jsx'
 import Services from '../components/Services.jsx'
 import Team from '../components/Team.jsx'
 import Testimonials from '../components/Testimonials.jsx'
+import { useData } from '../supabase/DataContext.jsx'
 
 export default function Home() {
   const [partners, setPartners] = useState([])
+  const { data, loading } = useData();
+
   useEffect(() => {
-    import('../data/partners.json').then((m) => setPartners(m.default))
-  }, [])
+    if (!loading && data?.partners) {
+      setPartners(data.partners)
+    }
+  }, [loading, data?.partners])
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
   return (
     <>
       <Hero />
@@ -24,5 +34,3 @@ export default function Home() {
     </>
   )
 }
-
-

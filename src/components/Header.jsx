@@ -19,7 +19,7 @@ export default function Header({ company }) {
         <Link to="/" className="flex items-center gap-2">
           <div className="h-9 w-9 rounded bg-brand-600 text-white grid place-items-center font-bold">T</div>
           <div className="flex flex-col leading-tight">
-            <span className="font-semibold">Toshiba Engineering</span>
+            <span className="font-semibold">{company?.name}</span>
             <span className="text-xs text-neutral-500">Packaging Automation</span>
           </div>
         </Link>
