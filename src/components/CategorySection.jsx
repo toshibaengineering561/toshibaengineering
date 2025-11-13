@@ -25,7 +25,7 @@ export default function CategorySection({ categories = [], products = [] }) {
       <div className="container">
         <div className="flex items-end justify-between mb-6">
           <h2 className="text-2xl font-bold">Machine Categories</h2>
-          <Link to="/products" className="text-sm text-brand-700 dark:text-brand-400">View all products</Link>
+          <Link to="/products" className="text-sm hidden sm:inline text-brand-700 dark:text-brand-400">View all products</Link>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((c, idx) => (
