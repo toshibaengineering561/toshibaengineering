@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom'
-import { useEffect, useState } from 'react'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import WhatsAppFloat from './components/WhatsAppFloat.jsx'
@@ -7,18 +6,26 @@ import Home from './pages/Home.jsx'
 import Products from './pages/Products.jsx'
 import ProductDetails from './pages/ProductDetails.jsx'
 import About from './pages/About.jsx'
+import { useData } from './context/DataProvider.jsx'
 
 function App() {
-  const [company, setCompany] = useState(null)
-
-  useEffect(() => {
-    import('./data/company.json').then((m) => setCompany(m.default))
-  }, [])
+  const { data, loading, error } = useData()
+  const { company } = data
 
   return (
     <div className="min-h-dvh flex flex-col">
       <Header company={company} />
       <main className="flex-1">
+        {loading && (
+          <div className="container py-10 text-sm text-neutral-500">
+            Loading Toshiba Engineering data...
+          </div>
+        )}
+        {error && (
+          <div className="container py-4 text-sm text-red-500">
+            Failed to load data. Please try again later.
+          </div>
+        )}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />

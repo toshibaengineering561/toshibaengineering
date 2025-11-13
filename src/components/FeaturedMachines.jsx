@@ -1,12 +1,8 @@
-import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
-export default function FeaturedMachines() {
-  const [products, setProducts] = useState([])
-  useEffect(() => {
-    import('../data/products.json').then((m) => setProducts(m.default.slice(0, 6)))
-  }, [])
+export default function FeaturedMachines({ products = [] }) {
+  const visible = products.slice(0, 6)
   return (
     <section className="section">
       <div className="container">
@@ -15,7 +11,7 @@ export default function FeaturedMachines() {
           <Link to="/products" className="text-sm text-brand-700 dark:text-brand-400">Browse all</Link>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((p, idx) => (
+          {visible.map((p, idx) => (
             <motion.div
               key={p.id}
               initial={{ opacity: 0, y: 20 }}
@@ -31,7 +27,9 @@ export default function FeaturedMachines() {
                 <div className="text-sm text-neutral-500 mb-1">{p.categoryName}</div>
                 <h3 className="font-semibold line-clamp-1">{p.name}</h3>
                 <div className="mt-3 flex items-center justify-between">
-                  <div className="text-brand-700 font-medium">{p.price ? `PKR ${p.price.toLocaleString()}` : 'Contact for price'}</div>
+                  <div className="text-brand-700 font-medium">
+                    {p.price != null ? `PKR ${Number(p.price).toLocaleString()}` : 'Contact for price'}
+                  </div>
                   <Link to={`/products/${p.id}`} className="text-sm text-brand-600 hover:text-brand-700">View Details</Link>
                 </div>
               </div>

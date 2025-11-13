@@ -10,7 +10,9 @@ export default function ProductCard({ product }) {
         <div className="text-xs text-neutral-500 mb-1">{product.categoryName}</div>
         <h3 className="font-semibold line-clamp-1">{product.name}</h3>
         <div className="mt-3 flex items-center justify-between">
-          <div className="text-brand-700 font-medium">{product.price ? `PKR ${product.price.toLocaleString()}` : 'Contact for price'}</div>
+          <div className="text-brand-700 font-medium">
+            {product.price != null ? `PKR ${Number(product.price).toLocaleString()}` : 'Contact for price'}
+          </div>
           <Link to={`/products/${product.id}`} className="text-sm text-brand-600 hover:text-brand-700">View</Link>
         </div>
       </div>

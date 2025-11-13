@@ -5,7 +5,7 @@ export default function PartnersCarousel({ partners = [] }) {
 
   useEffect(() => {
     const el = scrollerRef.current
-    if (!el) return
+    if (!el || partners.length === 0) return
     let raf
     let offset = 0
     let paused = false
@@ -19,12 +19,22 @@ export default function PartnersCarousel({ partners = [] }) {
       raf = requestAnimationFrame(loop)
     }
     raf = requestAnimationFrame(loop)
-    el.addEventListener('mouseenter', () => (paused = true))
-    el.addEventListener('mouseleave', () => (paused = false))
-    return () => cancelAnimationFrame(raf)
-  }, [])
+    const handleEnter = () => {
+      paused = true
+    }
+    const handleLeave = () => {
+      paused = false
+    }
+    el.addEventListener('mouseenter', handleEnter)
+    el.addEventListener('mouseleave', handleLeave)
+    return () => {
+      cancelAnimationFrame(raf)
+      el.removeEventListener('mouseenter', handleEnter)
+      el.removeEventListener('mouseleave', handleLeave)
+    }
+  }, [partners])
 
-  const items = [...partners, ...partners]
+  const items = partners.length > 0 ? [...partners, ...partners] : []
 
   return (
     <section className="section">
@@ -34,7 +44,7 @@ export default function PartnersCarousel({ partners = [] }) {
           <div className="flex whitespace-nowrap will-change-transform" ref={scrollerRef}>
             {items.map((p, idx) => (
               <div key={idx} className="shrink-0 w-40 h-20 grid place-items-center border-r border-neutral-200/60 dark:border-neutral-800/60 bg-white dark:bg-neutral-950">
-                <img src={p.logo} alt={p.name} className="max-h-10 object-contain opacity-80" />
+                <img src={p.logo}  alt={p.name} className="max-h-10 object-contain opacity-100" />
               </div>
             ))}
           </div>

@@ -1,15 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 
-export default function SearchFilter({ onChange }) {
-  const [categories, setCategories] = useState([])
+export default function SearchFilter({ categories = [], onChange }) {
   const [query, setQuery] = useState('')
   const [categoryId, setCategoryId] = useState('')
   const [minPrice, setMinPrice] = useState('')
   const [maxPrice, setMaxPrice] = useState('')
-
-  useEffect(() => {
-    import('../data/categories.json').then((m) => setCategories(m.default))
-  }, [])
 
   const filters = useMemo(() => ({ query, categoryId, minPrice, maxPrice }), [query, categoryId, minPrice, maxPrice])
 

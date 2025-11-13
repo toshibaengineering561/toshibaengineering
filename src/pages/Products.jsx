@@ -1,20 +1,13 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import SearchFilter from '../components/SearchFilter.jsx'
 import ProductCard from '../components/ProductCard.jsx'
+import { useData } from '../context/DataProvider.jsx'
 
 export default function Products() {
-  const [products, setProducts] = useState([])
+  const { data } = useData()
+  const products = data.products
+  const categories = data.categories
   const [filters, setFilters] = useState({})
-
-  useEffect(() => {
-    Promise.all([
-      import('../data/products.json').then((m) => m.default),
-      import('../data/categories.json').then((m) => m.default),
-    ]).then(([prods, cats]) => {
-      const idToName = Object.fromEntries(cats.map((c) => [c.id, c.name]))
-      setProducts(prods.map((p) => ({ ...p, categoryName: idToName[p.categoryId] })))
-    })
-  }, [])
 
   const filtered = useMemo(() => {
     const q = (filters.query || '').toLowerCase()
@@ -24,8 +17,10 @@ export default function Products() {
     return products.filter((p) => {
       const nameMatch = p.name.toLowerCase().includes(q)
       const catMatch = c ? p.categoryId === c : true
-      const price = p.price || 0
-      const priceMatch = price >= min && price <= max
+      const price =
+        p.price !== null && p.price !== undefined ? Number(p.price) : null
+      const priceMatch =
+        price === null ? true : price >= min && price <= max
       return nameMatch && catMatch && priceMatch
     })
   }, [products, filters])
@@ -33,10 +28,16 @@ export default function Products() {
   return (
     <div className="container section">
       <h1 className="text-2xl font-bold mb-4">All Machines</h1>
-      <SearchFilter onChange={setFilters} />
-      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((p) => <ProductCard key={p.id} product={p} />)}
-      </div>
+      <SearchFilter categories={categories} onChange={setFilters} />
+      {filtered.length > 0 ? (
+        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {filtered.map((p) => <ProductCard key={p.id} product={p} />)}
+        </div>
+      ) : (
+        <div className="mt-6 text-sm text-neutral-500">
+          No machines match your filters. Try adjusting search criteria.
+        </div>
+      )}
     </div>
   )
 }

@@ -1,17 +1,12 @@
-import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
-export default function Team() {
-  const [team, setTeam] = useState([])
-  useEffect(() => {
-    import('../data/team.json').then((m) => setTeam(m.default))
-  }, [])
+export default function Team({ members = [] }) {
   return (
     <section className="section">
       <div className="container">
         <h2 className="text-2xl font-bold mb-6">Our Team</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {team.map((t, idx) => (
+          {members.map((t, idx) => (
             <motion.div
               key={t.name}
               initial={{ opacity: 0, y: 20 }}

@@ -1,10 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useData } from '../context/DataProvider.jsx'
 
 export default function About() {
-  const [company, setCompany] = useState(null)
-  useEffect(() => {
-    import('../data/company.json').then((m) => setCompany(m.default))
-  }, [])
+  const { data } = useData()
+  const company = data.company
   return (
     <div className="container section">
       <h1 className="text-3xl font-bold">About Toshiba Engineering</h1>

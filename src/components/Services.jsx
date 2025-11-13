@@ -1,11 +1,18 @@
-import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
-export default function Services() {
-  const [services, setServices] = useState([])
-  useEffect(() => {
-    import('../data/services.json').then((m) => setServices(m.default))
-  }, [])
+export default function Services({ services = [] }) {
+  const renderLogo = (service) => {
+    const value = service.logo || service.icon
+    if (!value) return <span className="text-lg">⚙️</span>
+    const isUrl = typeof value === 'string' && value.startsWith('http')
+    if (isUrl) {
+      return (
+        <img src={value} alt={service.name} className="h-8 w-8 object-contain" />
+      )
+    }
+    return <span className="text-lg">{value}</span>
+  }
+
   return (
     <section className="section bg-neutral-50/60 dark:bg-neutral-900/30">
       <div className="container">
@@ -22,7 +29,7 @@ export default function Services() {
             >
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 grid place-items-center rounded bg-brand-50 text-brand-700">
-                  <span className="text-lg">{s.icon}</span>
+                  {renderLogo(s)}
                 </div>
                 <div>
                   <h3 className="font-semibold">{s.name}</h3>

@@ -1,40 +1,41 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import ImageGallery from '../components/ImageGallery.jsx'
+import { useData } from '../context/DataProvider.jsx'
 
 export default function ProductDetails() {
   const { id } = useParams()
-  const [product, setProduct] = useState(null)
-  const [categoryName, setCategoryName] = useState('')
+  const { data } = useData()
+  const product = useMemo(
+    () => data.products.find((x) => String(x.id) === String(id)),
+    [data.products, id],
+  )
+  const categoryName = useMemo(() => {
+    if (!product) return ''
+    const category = data.categories.find(
+      (c) => String(c.id) === String(product.categoryId),
+    )
+    return category?.name || ''
+  }, [data.categories, product])
 
-  useEffect(() => {
-    Promise.all([
-      import('../data/products.json').then((m) => m.default),
-      import('../data/categories.json').then((m) => m.default),
-    ]).then(([prods, cats]) => {
-      const p = prods.find((x) => String(x.id) === String(id))
-      setProduct(p || null)
-      const name = cats.find((c) => c.id === p?.categoryId)?.name || ''
-      setCategoryName(name)
-    })
-  }, [id])
-
-  const images = useMemo(() => {
-    if (!product) return []
-    if (product.images?.length) return product.images
-    return [product.image]
-  }, [product])
+  const images = useMemo(() => product?.images || [], [product])
 
   if (!product) {
     return (
       <div className="container section">
-        <p>Loading...</p>
+        <p className="text-neutral-500">Product not found.</p>
       </div>
     )
   }
 
-  const phone = import.meta.env.VITE_WHATSAPP_PHONE || ''
-  const whatsapp = phone ? `https://wa.me/${phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Hi, I would like to get a quote for ' + product.name)}` : null
+  const envPhone = import.meta.env.VITE_WHATSAPP_PHONE || ''
+  const companyPhone = data.company?.phone || ''
+  const phoneRaw = envPhone || companyPhone
+  const whatsapp = phoneRaw
+    ? `https://wa.me/${phoneRaw.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
+        `Hi, I would like to get a quote for ${product.name}`,
+      )}`
+    : null
 
   return (
     <div className="container section">
@@ -46,9 +47,11 @@ export default function ProductDetails() {
         <div>
           <h1 className="text-2xl font-bold">{product.name}</h1>
           <div className="mt-2 text-neutral-600 dark:text-neutral-300">{categoryName}</div>
-          <div className="mt-4 text-xl font-semibold text-brand-700">{product.price ? `PKR ${product.price.toLocaleString()}` : 'Contact for price'}</div>
+          <div className="mt-4 text-xl font-semibold text-brand-700">
+            {product.price != null ? `PKR ${Number(product.price).toLocaleString()}` : 'Contact for price'}
+          </div>
           <p className="mt-4 text-sm text-neutral-700 dark:text-neutral-300">{product.description}</p>
-          {product.specs && (
+          {product.specs && Object.keys(product.specs).length > 0 && (
             <div className="mt-6">
               <h2 className="font-semibold mb-2">Specifications</h2>
               <ul className="list-disc pl-5 text-sm space-y-1">
