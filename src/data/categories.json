@@ -1,0 +1,8 @@
+[
+  { "id": "filling", "name": "Filling Machines", "description": "Liquid, powder, and granular filling systems." },
+  { "id": "sealing", "name": "Sealing Machines", "description": "Heat, induction, and band sealing solutions." },
+  { "id": "wrapping", "name": "Wrapping Machines", "description": "Flow wrappers and shrink wrapping lines." },
+  { "id": "labeling", "name": "Labeling Machines", "description": "Automatic bottle and carton labeling." }
+]
+
+

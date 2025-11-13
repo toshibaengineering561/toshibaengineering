@@ -1,0 +1,68 @@
+[
+  {
+    "id": "p1",
+    "name": "Automatic Liquid Filling Machine 12‑Head",
+    "image": "https://images.unsplash.com/photo-1581093588401-16ec6ce9192b?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1581093588401-16ec6ce9192b?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1581090700227-1e37b190418e?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "categoryId": "filling",
+    "price": 2750000,
+    "specs": { "Throughput": "120 bpm", "Accuracy": "±0.5%", "Material": "SS304/316" },
+    "description": "High‑speed liquid filler suitable for beverages, oils, and pharmaceuticals.",
+    "categoryName": "Filling Machines"
+  },
+  {
+    "id": "p2",
+    "name": "Band Sealer with Date Coding",
+    "image": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200&auto=format&fit=crop",
+    "categoryId": "sealing",
+    "price": 350000,
+    "specs": { "Belt Width": "200mm", "Seal Width": "8–10mm", "Voltage": "220V" },
+    "description": "Continuous band sealing with integrated date/lot coder.",
+    "categoryName": "Sealing Machines"
+  },
+  {
+    "id": "p3",
+    "name": "Horizontal Flow Wrapper",
+    "image": "https://images.unsplash.com/photo-1581091215367-59ab6dcef1aa?q=80&w=1200&auto=format&fit=crop",
+    "categoryId": "wrapping",
+    "price": 1650000,
+    "specs": { "Film": "OPP/CPP", "Max Product": "300x100x80mm", "Speed": "150 ppm" },
+    "description": "Reliable flow wrapper for biscuits, soaps, and confectionery.",
+    "categoryName": "Wrapping Machines"
+  },
+  {
+    "id": "p4",
+    "name": "Automatic Bottle Labeler",
+    "image": "https://images.unsplash.com/photo-1581093458791-9d1bfe5b4b5a?q=80&w=1200&auto=format&fit=crop",
+    "categoryId": "labeling",
+    "price": 980000,
+    "specs": { "Label Width": "15–150mm", "Bottle Diameter": "30–120mm", "Speed": "120 bpm" },
+    "description": "High‑precision wrap‑around labeling for round bottles.",
+    "categoryName": "Labeling Machines"
+  },
+  {
+    "id": "p5",
+    "name": "Powder Auger Filler",
+    "image": "https://images.unsplash.com/photo-1581093588531-7873a90c5300?q=80&w=1200&auto=format&fit=crop",
+    "categoryId": "filling",
+    "price": 1450000,
+    "specs": { "Dose Range": "10–1000g", "Hopper": "50L", "Accuracy": "±1%" },
+    "description": "Auger filling system for powders like spices, milk powder, and flour.",
+    "categoryName": "Filling Machines"
+  },
+  {
+    "id": "p6",
+    "name": "Induction Sealer",
+    "image": "https://images.unsplash.com/photo-1581093458580-69b3a1a2ddd2?q=80&w=1200&auto=format&fit=crop",
+    "categoryId": "sealing",
+    "price": 420000,
+    "specs": { "Cap Diameter": "20–120mm", "Speed": "0–10 m/min", "Power": "2kW" },
+    "description": "Secure tamper‑evident seals for bottles and containers.",
+    "categoryName": "Sealing Machines"
+  }
+]
+
+
