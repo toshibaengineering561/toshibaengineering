@@ -7,6 +7,7 @@ import Products from './pages/Products.jsx'
 import ProductDetails from './pages/ProductDetails.jsx'
 import About from './pages/About.jsx'
 import { useData } from './context/DataProvider.jsx'
+import ScrollToTop from './helpers/ScrollToTop.jsx'
 
 function App() {
   const { data, loading, error } = useData()
@@ -16,6 +17,7 @@ function App() {
     <div className="min-h-dvh flex flex-col">
       <Header company={company} />
       <main className="flex-1">
+        <ScrollToTop />
         {loading && (
           <div className="container py-10 text-sm text-neutral-500">
             Loading Toshiba Engineering data...
