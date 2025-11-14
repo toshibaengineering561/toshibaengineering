@@ -10,6 +10,19 @@
     @apply antialiased bg-white text-neutral-800 dark:bg-neutral-950 dark:text-neutral-100;
   }
 }
+@layer utilities {
+  /* Remove arrows in Chrome, Safari, Edge */
+  input::-webkit-inner-spin-button,
+  input::-webkit-outer-spin-button {
+    @apply appearance-none m-0;
+  }
+
+  /* Remove arrows in Firefox */
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
+
 
 @layer components {
   .btn {

@@ -1,6 +1,6 @@
-export default function WhatsAppFloat({ phone }) {
-  if (!phone) return null
-  const link = `https://wa.me/${phone.replace(/[^0-9]/g, '')}`
+export default function WhatsAppFloat({ whatsapp }) {
+  if (!whatsapp) return null
+  const link = `https://wa.me/${whatsapp.replace(/[^0-9]/g, '')}`
   return (
     <a
       href={link}
