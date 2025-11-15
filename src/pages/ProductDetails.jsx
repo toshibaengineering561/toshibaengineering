@@ -29,7 +29,7 @@ export default function ProductDetails() {
   }
 
   const envPhone = import.meta.env.VITE_WHATSAPP_PHONE || ''
-  const companyPhone = data.company?.phone || ''
+  const companyPhone = data.company?.whatsapp || ''
   const phoneRaw = envPhone || companyPhone
   const whatsapp = phoneRaw
     ? `https://wa.me/${phoneRaw.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
