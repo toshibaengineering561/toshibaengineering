@@ -18,7 +18,14 @@ export default function ProductDetails() {
     return category?.name || ''
   }, [data.categories, product])
 
-  const images = useMemo(() => product?.images || [], [product])
+  const images = useMemo(() => {
+  if (!product) return []
+
+  const main = product.image ? [product.image] : []
+  const gallery = Array.isArray(product.images) ? product.images : []
+
+  return [...new Set([...main, ...gallery])]
+}, [product])
 
   if (!product) {
     return (
