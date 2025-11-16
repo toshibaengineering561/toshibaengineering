@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 export default function Services({ services = [] }) {
   const renderLogo = (service) => {
-    const value = service.logo || service.icon
+    const value = service.icon || null
     if (!value) return <span className="text-lg">⚙️</span>
     const isUrl = typeof value === 'string' && value.startsWith('http')
     if (isUrl) {

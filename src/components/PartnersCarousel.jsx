@@ -44,7 +44,7 @@ export default function PartnersCarousel({ partners = [] }) {
           <div className="flex whitespace-nowrap will-change-transform" ref={scrollerRef}>
             {items.map((p, idx) => (
               <div key={idx} className="shrink-0 w-40 h-20 grid place-items-center border-r border-neutral-200/60 dark:border-neutral-800/60 bg-white dark:bg-neutral-950">
-                <img src={p.logo}  alt={p.name} className="max-h-10 object-contain opacity-100" />
+                <img src={p.image}  alt={p.name} className="max-h-10 object-contain opacity-100" />
               </div>
             ))}
           </div>
