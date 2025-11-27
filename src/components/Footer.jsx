@@ -1,3 +1,5 @@
+import img from "../assets/icon.png"
+
 export default function Footer({ company }) {
   const year = new Date().getFullYear()
   return (
@@ -5,7 +7,7 @@ export default function Footer({ company }) {
       <div className="container section grid gap-8 md:grid-cols-2">
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2">
-            <div className="h-10 w-10 rounded bg-brand-600 text-white grid place-items-center font-bold">T</div>
+            <img className="h-10 w-10" src={img}/>
             <div className="flex flex-col leading-tight">
               <span className="font-semibold">{company?.name}</span>
               <span className="text-xs text-neutral-500">{company?.tagline}</span>
@@ -37,7 +39,7 @@ export default function Footer({ company }) {
         </div>
       </div>
       <div className="py-4 text-center text-xs text-neutral-500">
-        © {year} Toshiba Engineering. All rights reserved.
+        © {year} Toshiba Engineering Works. All rights reserved.
       </div>
     </footer>
   )

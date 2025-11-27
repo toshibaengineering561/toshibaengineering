@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import img from '../assets/icon.png'
 
 export default function Header({ company }) {
   const [open, setOpen] = useState(false)
@@ -17,7 +18,7 @@ export default function Header({ company }) {
     <div className={`sticky top-0 z-50 transition-all ${scrolled ? 'bg-white/80 dark:bg-neutral-950/70 backdrop-blur border-b border-neutral-200/60 dark:border-neutral-800/60' : 'bg-transparent'}`}>
       <header className="container flex items-center justify-between py-3">
         <Link to="/" className="flex items-center gap-2">
-          <div className="h-9 w-9 rounded bg-brand-600 text-white grid place-items-center font-bold">T</div>
+          <img className="h-9 w-9" src={img}/>
           <div className="flex flex-col leading-tight">
             <span className="font-semibold">{company?.name}</span>
             <span className="text-xs text-neutral-500">Packaging Automation</span>

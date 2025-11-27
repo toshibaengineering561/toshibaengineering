@@ -5,7 +5,7 @@ export default function About() {
   const company = data.company
   return (
     <div className="container section">
-      <h1 className="text-3xl font-bold">About Toshiba Engineering</h1>
+      <h1 className="text-3xl font-bold">About Toshiba Engineering Works</h1>
       <p className="mt-3 text-neutral-700 dark:text-neutral-300 max-w-3xl">
         40 years of innovation in packaging automation. We design and manufacture high‑performance packaging machines trusted by major manufacturers such as National Foods, Volka Foods, and Hilton Pharma.
       </p>
