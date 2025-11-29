@@ -39,7 +39,7 @@ export default function PartnersCarousel({ partners = [] }) {
   return (
     <section className="section">
       <div className="container">
-        <h2 className="text-lg font-semibold mb-4">Trusted by leading manufacturers</h2>
+        <h2 className="text-lg font-semibold mb-4">Our Honourable Clients</h2>
         <div className="relative overflow-hidden border border-neutral-200 dark:border-neutral-800 rounded">
           <div className="flex whitespace-nowrap will-change-transform" ref={scrollerRef}>
             {items.map((p, idx) => (
